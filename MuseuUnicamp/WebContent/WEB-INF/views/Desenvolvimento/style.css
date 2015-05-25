@@ -1,0 +1,198 @@
+/* ----- CSS Reset ----- */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 20px 50px 150px;
+    font-size: 13px;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ----- End CSS Reset  ----- */
+
+/* ----- Common ----- */
+html,body { min-height:100%; }
+
+body {
+	background-color: #575757;
+	color: #FCFCFC;
+}
+.container {
+	width: 960px;
+	margin: 0 auto;
+}
+/* ----- End Common ----- */
+
+/* ----- Header ----- */
+#header {
+	width: 960px;
+	height: 100px;
+	margin-top: 10px;
+}
+#logo {
+	width: 300px;
+	height: 100px;
+	background-color: #BDBDBD;
+	display: inline-block;
+	float: left;
+}
+ul#menu {
+	list-style: none;
+	display: inline-block;
+	color: #BDBDBD;
+	float: right;
+	max-width: 600px;
+	overflow: hidden;
+	height: 30px;
+	margin-top: 70px;
+	margin-right: 30px;
+}
+ul#menu li.menu-item {
+	padding: 5px 10px 5px 10px;
+	height: 20px; /* Total: 30px */
+	max-width: 180px; /* Total: 200px */
+	display: inline-block;
+}
+ul#menu li.menu-item:hover {
+	background-color: #7D7D7D;
+}
+ul#menu li.menu-item:last-of-type {
+	border: 0;
+}
+ul#menu li.menu-separator {
+	width: 1px;
+	background-color: #BDBDBD;
+	display: inline-block;
+	height: 30px;
+	overflow: hidden;
+	margin: 0 2px;
+}
+/* ----- End Header ----- */
+
+/* ----- Main Common ----- */
+.main {
+	height: 100%;
+	width: 900px;
+	padding: 30px 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #707070;
+	border-radius: 20px;
+}
+
+.breadcrumb {
+	font-size: 10px;
+	color: #BDBDBD;
+}
+.breadcrumb a, .breadcrumb a:visited {
+	color: #BDBDBD;
+}
+
+.pagetitle {
+	font-size: 30px;
+	margin-bottom: 20px;
+}
+/* ----- End Main Common ----- */
+
+/* ----- DropDown Menu ----- */
+ul {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 15px 4px 17px 0;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+ul li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+ul li:hover {
+  background: #555;
+  color: #fff;
+}
+ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+ul li ul li { 
+  background: #555; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #000;
+}
+ul li ul li:hover { background: #666; }
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+/* ----- End DropDown Menu ----- */
