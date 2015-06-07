@@ -29,6 +29,27 @@ public class Escultura extends Obra{
 		this.profundidade = profundidade;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Escultura" + super.toString() + "[materiais=" + materiais + ", altura=" + altura
+				+ ", largura=" + largura + ", profundidade=" + profundidade
+				+ "]";
+	}
+
+	public Obra getObra(){
+		Obra obra = new Obra();
+		obra.setIdObra(this.getIdObra());
+		obra.setIdEstilo(this.getIdEstilo());
+		obra.setTitulo(this.getTitulo());
+		obra.setData(this.getData());
+		obra.setDescricao(this.getDescricao());
+		obra.setTags(this.getTags());
+		obra.setPathImagem(this.getPathImagem());
+		obra.setTipo(this.getTipo());
+		return obra;
+	}
+	
 	public String getMateriais() {
 		return materiais;
 	}

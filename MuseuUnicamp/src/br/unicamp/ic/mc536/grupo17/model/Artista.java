@@ -1,17 +1,37 @@
 package br.unicamp.ic.mc536.grupo17.model;
 
-import java.sql.Timestamp;
-
 public class Artista {
 	
 	public int idArtista;
 	public String nome;
-	public Timestamp dataNasc;
-	public Timestamp dataFalesc;
+	public int dataNasc;
+	public int dataFalesc;
 	public String origem;
 	public String bio;
 	
+	public Artista(){
+		
+	}
 	
+	public Artista(int idArtista, String nome, int dataNasc, int dataFalesc,
+			String origem, String bio) {
+		super();
+		this.idArtista = idArtista;
+		this.nome = nome;
+		this.dataNasc = dataNasc;
+		this.dataFalesc = dataFalesc;
+		this.origem = origem;
+		this.bio = bio;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Artista [idArtista=" + idArtista + ", nome=" + nome
+				+ ", dataNasc=" + dataNasc + ", dataFalesc=" + dataFalesc
+				+ ", origem=" + origem + ", bio=" + bio + "]";
+	}
+
 	public int getIdArtista() {
 		return idArtista;
 	}
@@ -24,16 +44,16 @@ public class Artista {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Timestamp getDataNasc() {
+	public int getDataNasc() {
 		return dataNasc;
 	}
-	public void setDataNasc(Timestamp dataNasc) {
+	public void setDataNasc(int dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-	public Timestamp getDataFalesc() {
+	public int getDataFalesc() {
 		return dataFalesc;
 	}
-	public void setDataFalesc(Timestamp dataFalesc) {
+	public void setDataFalesc(int dataFalesc) {
 		this.dataFalesc = dataFalesc;
 	}
 	public String getOrigem() {

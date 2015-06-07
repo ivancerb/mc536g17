@@ -1,8 +1,5 @@
 package br.unicamp.ic.mc536.grupo17.process;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import br.unicamp.ic.mc536.grupo17.model.Artista;
 
 public class ArtistaProcess {
@@ -16,8 +13,8 @@ public class ArtistaProcess {
 	private Artista generateMockupArtistInfo(String artistId){
 		Artista artista = new Artista();
 		artista.setNome("John Doe");
-		artista.setDataNasc(new Timestamp(new Date().getTime()));
-		artista.setDataFalesc(new Timestamp(new Date().getTime()));
+		artista.setDataNasc(1);
+		artista.setDataFalesc(2);
 		artista.setOrigem("Brasil");
 		artista.setBio("Imperdiet vel tortor praesent convallis turpis imperdiet " +
 				"faucibus euismod aenean, lacus felis ante venenatis sodales nullam " +

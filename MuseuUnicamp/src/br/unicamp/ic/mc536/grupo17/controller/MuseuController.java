@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.unicamp.ic.mc536.grupo17.model.SearchResult;
+import br.unicamp.ic.mc536.grupo17.dao.filter.SearchResult;
+import br.unicamp.ic.mc536.grupo17.model.results.ArtistSearchResult;
+import br.unicamp.ic.mc536.grupo17.model.results.AudiovisualSearchResult;
+import br.unicamp.ic.mc536.grupo17.model.results.EsculturaSearchResult;
+import br.unicamp.ic.mc536.grupo17.model.results.PinturaSearchResult;
 import br.unicamp.ic.mc536.grupo17.process.ArtistaProcess;
 import br.unicamp.ic.mc536.grupo17.process.SearchProcess;
 
@@ -25,9 +29,10 @@ public class MuseuController {
 	
 	@RequestMapping("/search")
 	public String loadSearchPage(Model model) throws SQLException{
-		//TestsResultsDao.insert();
-		//model.addAttribute("testeBd", "Hello");
-		return "/museu/search";
+		SearchProcess process = new SearchProcess();
+		List<String> nomeEstilosList = process.selectNomeEstiloList();
+		model.addAttribute("nomeEstilosList", nomeEstilosList);
+		return "/museu/search-complex";
 	}
 	
 	@RequestMapping("/process-search")
@@ -39,6 +44,49 @@ public class MuseuController {
 		//TestsResultsDao.insert();
 		//model.addAttribute("testeBd", "Hello");
 		return "museu/search-results";
+	}
+	
+	@RequestMapping("/process-artist-search")
+	public String processArtistSearch(@RequestParam String nome, @RequestParam String pais, @RequestParam String estilo, 
+			@RequestParam boolean dataInicioChecked, @RequestParam int dataInicio, @RequestParam boolean dataFimChecked, 
+			@RequestParam int dataFim, Model model) throws SQLException{
+		
+		System.out.println("nome" + nome + "pais" + pais + "estilo" + estilo +  "dataInicioChecked" + dataInicioChecked +
+				"dataInicio" + dataInicio + "dataFimChecked" + dataFimChecked +  "dataFim" + dataFim);
+
+		SearchProcess process = new SearchProcess();
+		List<ArtistSearchResult> searchResultsList = process.getArtistaResults(nome, pais, estilo, 
+				dataInicioChecked, dataInicio, dataFimChecked, dataFim);
+		model.addAttribute("searchResultsList", searchResultsList);
+		return "museu/search-artist-results";
+	}
+	
+	@RequestMapping("/process-obra-search")
+	public String processObraSearch(@RequestParam String titulo, @RequestParam String autor, @RequestParam boolean isPintura, 
+			@RequestParam boolean isEscultura, @RequestParam boolean isAudiovisual, @RequestParam boolean materialSearchChecked, 
+			@RequestParam String material, @RequestParam boolean tipoMidiaChecked, @RequestParam String tipoMidia, @RequestParam String pais, 
+			@RequestParam String estilo, @RequestParam boolean dataInicioChecked, @RequestParam int dataInicio, 
+			@RequestParam boolean dataFimChecked, @RequestParam int dataFim, Model model) throws SQLException{
+		
+		System.out.println("controller1");
+		
+		SearchProcess process = new SearchProcess();
+		//inicializando filtros de busca
+		process.setObraSearchFilters(titulo, autor, isPintura, isEscultura, isAudiovisual, 
+				materialSearchChecked, material, tipoMidiaChecked, tipoMidia, pais, estilo, 
+				dataInicioChecked, dataInicio, dataFimChecked, dataFim);
+		System.out.println("controller2");
+		//consultas no banco para os filtros
+		List<PinturaSearchResult> searchPinturaResultsList = process.searchPinturas();
+		List<EsculturaSearchResult> searchEsculturaResultsList = process.searchEsculturas();
+		List<AudiovisualSearchResult> searchAudiovisualResultsList = process.searchAudiovisual();
+		
+		System.out.println("controller3");
+		model.addAttribute("searchPinturaResultsList", searchPinturaResultsList);
+		model.addAttribute("searchEsculturaResultsList", searchEsculturaResultsList);
+		model.addAttribute("searchAudiovisualResultsList", searchAudiovisualResultsList);
+		
+		return "museu/search-obra-results";
 	}
 	
 	@RequestMapping("/artist/{artistId}")

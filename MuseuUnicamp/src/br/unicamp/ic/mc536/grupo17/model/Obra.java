@@ -1,52 +1,64 @@
 package br.unicamp.ic.mc536.grupo17.model;
 
 public class Obra {
-	private int id_obra;
-	private int id_estilo;
+	private int idObra;
+	private int idEstilo;
 	private String titulo;
-	private String data; 
+	private int data; 
 	private String descricao;
 	private String tags;
-	private String path_imagem;
+	private String pathImagem;
+	private String tipo;
 	
 	public Obra(){
 		
 	}
 	
-	public Obra(int id_obra, int id_estilo, String titulo, String data,
-			String descricao, String tags, String path_imagem) {
+	public Obra(int idObra, int idEstilo, String titulo, int data,
+			String descricao, String tags, String pathImagem, String tipo) {
 		super();
-		this.id_obra = id_obra;
-		this.id_estilo = id_estilo;
+		this.idObra = idObra;
+		this.idEstilo = idEstilo;
 		this.titulo = titulo;
 		this.data = data;
 		this.descricao = descricao;
 		this.tags = tags;
-		this.path_imagem = path_imagem;
+		this.pathImagem = pathImagem;
+		this.tipo = tipo;
 	}
 
 	public Obra(Obra oldObra) {
 		super();
-		this.id_obra = oldObra.getId_obra();
-		this.id_estilo = oldObra.getId_estilo();
+		this.idObra = oldObra.getIdObra();
+		this.idEstilo = oldObra.getIdEstilo();
 		this.titulo = oldObra.getTitulo();
 		this.data = oldObra.getData();
 		this.descricao = oldObra.getDescricao();
 		this.tags = oldObra.getTags();
-		this.path_imagem = oldObra.getPath_imagem();
+		this.pathImagem = oldObra.getPathImagem();
+		this.tipo = oldObra.getTipo();
 	}
 	
-	public int getId_obra() {
-		return id_obra;
+	
+	@Override
+	public String toString() {
+		return "Obra [idObra=" + idObra + ", idEstilo=" + idEstilo
+				+ ", titulo=" + titulo + ", data=" + data + ", descricao="
+				+ descricao + ", tags=" + tags + ", pathImagem=" + pathImagem
+				+ ", tipo=" + tipo + "]";
 	}
-	public void setId_obra(int id_obra) {
-		this.id_obra = id_obra;
+
+	public int getIdObra() {
+		return idObra;
 	}
-	public int getId_estilo() {
-		return id_estilo;
+	public void setIdObra(int idObra) {
+		this.idObra = idObra;
 	}
-	public void setId_estilo(int id_estilo) {
-		this.id_estilo = id_estilo;
+	public int getIdEstilo() {
+		return idEstilo;
+	}
+	public void setIdEstilo(int idEstilo) {
+		this.idEstilo = idEstilo;
 	}
 	public String getTitulo() {
 		return titulo;
@@ -54,10 +66,10 @@ public class Obra {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public String getData() {
+	public int getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(int data) {
 		this.data = data;
 	}
 	public String getDescricao() {
@@ -72,11 +84,21 @@ public class Obra {
 	public void setTags(String tags) {
 		this.tags = tags;
 	}
-	public String getPath_imagem() {
-		return path_imagem;
+	public String getPathImagem() {
+		return pathImagem;
 	}
-	public void setPath_imagem(String path_imagem) {
-		this.path_imagem = path_imagem;
+	public void setPathImagem(String pathImagem) {
+		this.pathImagem = pathImagem;
 	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	
 }
 
