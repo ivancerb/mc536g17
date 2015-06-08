@@ -29,6 +29,7 @@ public class ExposicaoDao extends BaseDao{
 			"DESCRICAO, DATA_INICIO, DATA_FIM, STATUS_CD) VALUES (?,?,?,?,?,?,?)";
 	private static String UPDATE_BASE = "UPDATE EXPOSICAO ";
 	private static String DELETE_BASE = "DELETE FROM EXPOSICAO WHERE";
+		
 	
 	public ExposicaoDao(){
 		super();
@@ -105,6 +106,7 @@ public class ExposicaoDao extends BaseDao{
 		}
 		return listExposicao;
 	}
+
 	
 	public boolean insert(Exposicao exposicao) throws SQLException{
 		Connection connection = ConnectionManager.getConnection();

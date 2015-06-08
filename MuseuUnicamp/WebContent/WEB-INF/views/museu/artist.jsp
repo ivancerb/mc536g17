@@ -15,7 +15,7 @@
 			<img src="<c:url value="/resources/img/logoinicialmav.jpg"/>" />
 		</header>
 		<nav>
-			agora	|	exposicoes	|	busca	|	sobre	|	contato
+			<a href="./home">Agora</a>	|	<a href="./exposicoes">Exposicoes</a>	|	<a href="./search">Busca</a>	|	<a href="./sobre">Sobre</a>	|	<a href="./contato">Contato</a>
 		</nav>
 		<main>
 			<h1>${artistInfo.nome}</h1>

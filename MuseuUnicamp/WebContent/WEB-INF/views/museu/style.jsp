@@ -9,7 +9,6 @@
 		<!-- BEGIN - Including Dojo -->
 		<script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.3/dojo/dojo.js"></script>
 		<!-- END - Including Dojo -->
-		<link rel="stylesheet" href="museu.css" />
 	</head>
 	<body>
 		<header>
@@ -19,23 +18,11 @@
 			<a href="./home">Agora</a>	|	<a href="./exposicoes">Exposicoes</a>	|	<a href="./search">Busca</a>	|	<a href="./sobre">Sobre</a>	|	<a href="./contato">Contato</a>
 		</nav>
 		<main>
-			<div id="busca-home">
-				<h2>Busca em nosso catálogo</h2>
-				<h3><a href="search">Buscar</a></h3>
-			</div>
-			<div id="home-expo-current">
-				<h1>Exposicoes Correntes</h1>			
-				<c:forEach items="${activeExposList}" var="expo">
-					<h2>${expo.nome} </h2>
-					<a href="exposicoes/${expo.idExposicao}">Visitar esta exposição</a>
-					<p>Inicio: ${expo.dataInicio}</p>
-					<p>Fim: ${expo.dataFim}</p>
-					<hr/>			
-				</c:forEach>    
-			</div>
-		
-			<p> LOREM IPSUM </p>
-			<p style="color:red"> ${testeBd}</p>
+			<h1>Estilo: ${estiloInfo.nome}</h1>
+			<p><label>Inicio:  </label>${estiloInfo.inicio}</p>
+			<p><label>Fim: </label>${estiloInfo.fim}</p>
+			<p><b>Descricao:</b></p>
+			<p>${estiloInfo.descricao}</p>
 		</main>
 		<footer>
 			MC 437 - grupo 17

@@ -10,11 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.unicamp.ic.mc536.grupo17.dao.filter.SearchResult;
+import br.unicamp.ic.mc536.grupo17.model.Artista;
+import br.unicamp.ic.mc536.grupo17.model.Audiovisual;
+import br.unicamp.ic.mc536.grupo17.model.Escultura;
+import br.unicamp.ic.mc536.grupo17.model.Estilo;
+import br.unicamp.ic.mc536.grupo17.model.Exposicao;
+import br.unicamp.ic.mc536.grupo17.model.Pintura;
 import br.unicamp.ic.mc536.grupo17.model.results.ArtistSearchResult;
 import br.unicamp.ic.mc536.grupo17.model.results.AudiovisualSearchResult;
 import br.unicamp.ic.mc536.grupo17.model.results.EsculturaSearchResult;
 import br.unicamp.ic.mc536.grupo17.model.results.PinturaSearchResult;
-import br.unicamp.ic.mc536.grupo17.process.ArtistaProcess;
+import br.unicamp.ic.mc536.grupo17.process.InfoPagesProcess;
 import br.unicamp.ic.mc536.grupo17.process.SearchProcess;
 
 @Controller
@@ -24,6 +30,9 @@ public class MuseuController {
 
 	@RequestMapping("/home")
 	public String loadHomePage(Model model) throws SQLException{
+		InfoPagesProcess infoPagesProcess  = new InfoPagesProcess();
+		List<Exposicao> activeExposList = infoPagesProcess.getActiveExpos();
+		model.addAttribute("activeExposList", activeExposList);
 		return "/museu/home";
 	}
 	
@@ -91,25 +100,125 @@ public class MuseuController {
 	
 	@RequestMapping("/artist/{artistId}")
 	public String loadArtistPage(@PathVariable String artistId, Model model) throws SQLException{
-		//TestsResultsDao.insert();
-		//model.addAttribute("testeBd", "Hello");
-		model.addAttribute("artistInfo", new ArtistaProcess().getArtistInfo(artistId));
+		System.out.println(artistId);
+		InfoPagesProcess infoPagesProcess = new InfoPagesProcess();
+		List<Artista> artista = infoPagesProcess.getArtistInfo(artistId);
+		model.addAttribute("artistInfo", artista.get(0));
 		return "/museu/artist";
 	}
 	
-	@RequestMapping("/artwork")
-	public String loadArtworkPage(Model model) throws SQLException{
-		//TestsResultsDao.insert();
-		//model.addAttribute("testeBd", "Hello");
+	@RequestMapping("/pinturas/{pinturaId}")
+	public String loadPinturaInfo(@PathVariable String pinturaId, @RequestParam int idAutor, @RequestParam String nomeAutor, 
+			@RequestParam int idEstilo, @RequestParam String nomeEstilo, Model model) throws SQLException{
+		System.out.println(pinturaId);
+		InfoPagesProcess infoPagesProcess = new InfoPagesProcess();
+		List<Pintura> result = infoPagesProcess.getPinturaInfo(pinturaId);
+		
+		model.addAttribute("result", result.get(0));
+		
+		model.addAttribute("idAutor", idAutor);
+		model.addAttribute("nomeAutor", nomeAutor);
+		model.addAttribute("idEstilo", idEstilo);
+		model.addAttribute("nomeEstilo", nomeEstilo);
+		
+		model.addAttribute("isPintura", true);
+		model.addAttribute("isEscultura", false);
+		model.addAttribute("isAudiovisual", false);
+		
 		return "/museu/artwork";
 	}
 	
-	@RequestMapping("/expo")
-	public String loadExpoPage(Model model) throws SQLException{
-		//TestsResultsDao.insert();
-		//model.addAttribute("testeBd", "Hello");
-		return "/museu/expo";
+	@RequestMapping("/esculturas/{esculturaId}")
+	public String loadEsculturaInfo(@PathVariable String esculturaId, @RequestParam int idAutor, @RequestParam String nomeAutor, 
+			@RequestParam int idEstilo, @RequestParam String nomeEstilo, Model model) throws SQLException{
+		System.out.println(esculturaId);
+		InfoPagesProcess infoPagesProcess = new InfoPagesProcess();
+		List<Escultura> result = infoPagesProcess.getEsculturaInfo(esculturaId);
+		
+		model.addAttribute("result", result.get(0));
+		
+		model.addAttribute("idAutor", idAutor);
+		model.addAttribute("nomeAutor", nomeAutor);
+		model.addAttribute("idEstilo", idEstilo);
+		model.addAttribute("nomeEstilo", nomeEstilo);
+		
+		model.addAttribute("isPintura", false);
+		model.addAttribute("isEscultura", true);
+		model.addAttribute("isAudiovisual", false);
+		
+		return "/museu/artwork";
+	}
+	
+	@RequestMapping("/audiovisual/{audiovisualId}")
+	public String loadAudiovisualInfo(@PathVariable String audiovisualId, @RequestParam int idAutor, @RequestParam String nomeAutor, 
+			@RequestParam int idEstilo, @RequestParam String nomeEstilo, Model model) throws SQLException{
+		System.out.println(audiovisualId);
+		InfoPagesProcess infoPagesProcess = new InfoPagesProcess();
+		List<Audiovisual> result = infoPagesProcess.getAudiovisualInfo(audiovisualId);
+		
+		model.addAttribute("result", result.get(0));
+		
+		model.addAttribute("idAutor", idAutor);
+		model.addAttribute("nomeAutor", nomeAutor);
+		model.addAttribute("idEstilo", idEstilo);
+		model.addAttribute("nomeEstilo", nomeEstilo);
+		
+		model.addAttribute("isPintura", false);
+		model.addAttribute("isEscultura", false);
+		model.addAttribute("isAudiovisual", true);
+		
+		return "/museu/artwork";
+	}
+	
+	@RequestMapping("/estilo/{estiloId}")
+	public String loadEstiloPage(@PathVariable String estiloId, Model model) throws SQLException{
+		System.out.println(estiloId);
+		InfoPagesProcess infoPagesProcess = new InfoPagesProcess();
+		List<Estilo> estilo = infoPagesProcess.getEstiloInfo(estiloId);
+		model.addAttribute("estiloInfo", estilo.get(0));
+		return "/museu/style";
 	}
 	
 	
+	@RequestMapping("/exposicoes")
+	public String loadAllExposPage(Model model) throws SQLException{
+		InfoPagesProcess infoPagesProcess  = new InfoPagesProcess();
+		List<Exposicao> activeExposList = infoPagesProcess.getActiveExpos();
+		List<Exposicao> expoList = infoPagesProcess.getAllExpos();
+		model.addAttribute("activeExposList", activeExposList);
+ 		model.addAttribute("expoList", expoList);
+		return "/museu/expo-list";
+	}
+	
+	@RequestMapping("/exposicoes/{expoId}")
+	public String loadExpoPage(@PathVariable int expoId, Model model) throws SQLException{
+		System.out.println(expoId);
+		InfoPagesProcess process = new InfoPagesProcess();
+		List<Exposicao> expoInfo = process.getExpoInfo(expoId);
+		
+		String nomeCurador = process.getCuradorFromExpo(expoInfo.get(0).getIdCurador());
+		
+		List<PinturaSearchResult> expoPinturaResultsList = process.getPinturasFromExpo(expoId);
+		List<EsculturaSearchResult> expoEsculturaResultsList = process.getEsculturasFromExpo(expoId);
+		List<AudiovisualSearchResult> expoAudiovisualResultsList = process.getAudiovisualFromExpo(expoId);
+		
+		model.addAttribute("expoPinturaResultsList", expoPinturaResultsList);
+		model.addAttribute("expoEsculturaResultsList", expoEsculturaResultsList);
+		model.addAttribute("expoAudiovisualResultsList", expoAudiovisualResultsList);
+		
+		model.addAttribute("nomeCurador", nomeCurador);
+ 		model.addAttribute("expo", expoInfo.get(0));
+ 		
+		return "/museu/expo";
+	}
+	
+	@RequestMapping("/sobre")
+	public String loadAboutPage(){
+		return "/museu/sobre";
+	}
+	
+	@RequestMapping("/contato")
+	public String loadContatoPage(){
+		return "/museu/contato";
+	}
 }
