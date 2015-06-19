@@ -15,13 +15,21 @@
 			<img src="<c:url value="/resources/img/logoinicialmav.jpg"/>" />
 		</header>
 		<nav>
-			<a href="./home">Agora</a>	|	<a href="./exposicoes">Exposicoes</a>	|	<a href="./search">Busca</a>	|	<a href="./sobre">Sobre</a>	|	<a href="./contato">Contato</a>
+			<a href="../home">Agora</a>	|	<a href="../exposicoes">Exposicoes</a>	|	<a href="../search">Busca</a>	|	<a href="../sobre">Sobre</a>	|	<a href="../contato">Contato</a>
 		</nav>
 		<main>
 			<h1>${result.titulo}</h1>
 			<div id="artwork-photo">
-				<img src="<c:url value="/resources/img/obras/${result.pathImagem}"/>" />
+				<c:choose>
+					<c:when test="${empty result.pathImagem}">
+						<img src="<c:url value="/resources/img/obras/indisponivel.png"/>" />
+					</c:when>
+					<c:otherwise>
+						<img src="<c:url value="/resources/img/obras/${result.pathImagem}"/>" />
+					</c:otherwise>
+				</c:choose>
 			</div>
+			
 			<p><label>Autor: </label>${nomeAutor}   <a href="../artist/${idAutor}">Ver mais sobre esse artista</a></p>
 			<p><label>Estilo: </label>${nomeEstilo} <a href="../estilo/${idEstilo}">Ver mais sobre esse estilo</a></p>
 			<p><label>Data:  </label>${result.data}</p>

@@ -21,7 +21,7 @@ import br.unicamp.ic.mc536.grupo17.model.results.PinturaSearchResult;
 public class SearchDao extends BaseDao{
 
 	private static String SELECT_ARTISTA_E_ESTILO = 
-			"SELECT " +  
+			"SELECT DISTINCT " +  
 				" ARTISTA.ID_ARTISTA, ARTISTA.NOME, ARTISTA.DATA_NASC, ARTISTA.DATA_FALESC, ARTISTA.ORIGEM, ARTISTA.BIO, ESTILO.ID_ESTILO, " +		
 				" ESTILO.INICIO, ESTILO.FIM, ESTILO.NOME, ESTILO.DESCRICAO " + 
 			" FROM " + 

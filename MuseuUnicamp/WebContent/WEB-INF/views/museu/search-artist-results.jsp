@@ -12,7 +12,7 @@
 	<c:choose>
 		<c:when test="${not empty searchResultsList}">
 			<c:forEach items="${searchResultsList}" var="result">
-				<p>Nome: ${result.artista.nome} <a href="#">Ver artista</a></p>
+				<p>Nome: ${result.artista.nome} <a href="artist/${result.artista.idArtista}">Ver detalhes do artista</a></p>
 				<p>Pais: ${result.artista.origem}</p>
 				<p>Estilo: ${result.estilo.nome}</p>
 				<hr/>			

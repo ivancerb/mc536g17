@@ -123,7 +123,7 @@ public class InfoPagesProcess {
 	 */
 	public List<Exposicao> getAllExpos() throws SQLException{
 		ExposicaoDao exposicaoDao = new ExposicaoDao();
-		return exposicaoDao.select();
+		return exposicaoDao.selectAllOrderedByEndDate();
 	}
 	
 	public List<Exposicao> getExpoInfo(int expoId) throws SQLException{

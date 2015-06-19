@@ -11,7 +11,7 @@ public class ConnectionManager {
 			try {
 			    Class.forName("com.mysql.jdbc.Driver"); 
 				connection = DriverManager
-						.getConnection("jdbc:mysql://localhost:3306/museu2","root", "root");
+						.getConnection("jdbc:mysql://localhost:3306/museu3","root", "root");
 			} 
 			catch (SQLException  e) {
 				System.out.println("Fail to connect with the DB");

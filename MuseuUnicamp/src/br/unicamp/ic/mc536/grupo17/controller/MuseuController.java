@@ -77,7 +77,7 @@ public class MuseuController {
 			@RequestParam String estilo, @RequestParam boolean dataInicioChecked, @RequestParam int dataInicio, 
 			@RequestParam boolean dataFimChecked, @RequestParam int dataFim, Model model) throws SQLException{
 		
-		System.out.println("controller1");
+		System.out.println("isEscultura: " + isEscultura);
 		
 		SearchProcess process = new SearchProcess();
 		//inicializando filtros de busca

@@ -56,12 +56,9 @@
 			        resultDiv.innerHTML = "Aguarde enquanto sua consulta esta sendo processada";
 			
 					var url = "process-artist-search"; //base url to be called; form parameters added below
-					alert("here1");
 
 					var nome =  dom.byId("artist-search-name").value;
-					alert("here2");
 					var pais = dom.byId("artist-search-country").value;
-					alert("here2");
 					var estilo = dom.byId("artist-search-style").options[dom.byId('artist-search-style').selectedIndex].text;
 					var dataInicioChecked =  dom.byId("artist-search-data-checkbox-begin").checked;
 					var dataInicio = dom.byId("artist-search-data-begin").value;
@@ -73,9 +70,6 @@
 					if(dataFim=="" || dataFim=="undefined"){
 						dataFim=-1;
 					}
-					
-					alert("nome" + nome + "pais" + pais + "estilo" + estilo +  "dataInicioChecked" + dataInicioChecked +
-						"dataInicio" + dataInicio + "dataFimChecked" + dataFimChecked +  "dataFim" + dataFim);
 					
 					//append form values to the base url
 					url +="?nome=" + nome +
@@ -112,39 +106,29 @@
 			        resultDiv.innerHTML = "Aguarde enquanto sua consulta esta sendo processada";
 			
 					var url = "process-obra-search"; //base url to be called; form parameters added below
-					alert("here1");
 
 					var titulo =  dom.byId("obra-search-title").value;
-					alert("here2");
 					var autor = dom.byId("obra-search-author").value;
-					alert("here2.5");
 					var isPintura = dom.byId("obra-search-tipo-checkbox-pintura").checked;
 					var isEscultura = dom.byId("obra-search-tipo-checkbox-escultura").checked;
 					var isAudiovisual = dom.byId("obra-search-tipo-checkbox-audiovisual").checked;
-					alert("here3");
 					var materialSearchChecked = dom.byId("obra-search-material-checkbox").checked;
 					var material = dom.byId("obra-search-material-value").value;
-					alert("here4");
 					var tipoMidiaChecked = dom.byId("obra-search-midia-checkbox").checked;
 					var tipoMidia = dom.byId("obra-search-midia-value").value;
-					alert("here5");
 					var pais = dom.byId("obra-search-country").value;
 					
 					var estilo = dom.byId("obra-search-style").options[dom.byId('obra-search-style').selectedIndex].text;
-					alert("here6");
 					var dataInicioChecked =  dom.byId("obra-search-data-checkbox-begin").checked;
 					var dataInicio = dom.byId("obra-search-data-begin").value;
 					if(dataInicio=="" || dataInicio=="undefined"){
 						dataInicio=-1;
 					}
-					alert("here7");
 					var dataFimChecked = dom.byId("obra-search-data-checkbox-end").checked;
 					var dataFim = dom.byId("obra-search-data-end").value;
 					if(dataFim=="" || dataFim=="undefined"){
 						dataFim=-1;
 					}
-					
-					alert("dskfodskfo");
 					
 					//append form values to the base url
 					url +="?titulo=" + titulo +

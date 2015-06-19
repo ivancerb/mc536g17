@@ -1,0 +1,17 @@
+use museu3;
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('3','Não Informado','0','37',' 22.50 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('363','Ceramica','0','53 ',' 30');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('364','Madeira','0','65 ',' 35 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('406','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('415','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('450','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('577','Madeira','0','67 ',' 67 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('584','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('641','Não Informado','0','15 ',' 32 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('642','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('888','Não Informado','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('901','Não Informado','0','91 ',' 168 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('917','Ceramica','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('918','Ceramica','0','0 ',' 0');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('922','Madeira','0','31 ',' 40 ');
+insert into ESCULTURA (ID_OBRA, MATERIAIS, ALTURA, LARGURA, PROFUNDIDADE) values ('1036','Ceramica','0','50 ',' 22.5 ');

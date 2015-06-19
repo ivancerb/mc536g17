@@ -49,7 +49,7 @@ public class SearchProcess {
 			 int dataFim) throws SQLException{
 		List<CompoundSearchFilter> searchFilterList = new ArrayList<CompoundSearchFilter>();
 		if(nome!=null && nome.trim()!=""){ 
-			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.NOME, "=", nome, false));
+			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.NOME, "LIKE", "%" + nome + "%", false));
 		}
 		if(pais!=null && pais.trim()!=""){ 
 			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.ORIGEM, "=", pais, false));
@@ -139,10 +139,10 @@ public class SearchProcess {
 		//common filters
 		List<CompoundSearchFilter> searchFilterList = new ArrayList<CompoundSearchFilter>();
 		if(titulo!=null && titulo.trim()!=""){ 
-			searchFilterList.add(new CompoundSearchFilter("OBRA", ObraDao.TITULO, "=", titulo, false));
+			searchFilterList.add(new CompoundSearchFilter("OBRA", ObraDao.TITULO, "LIKE", "%" + titulo + "%", false));
 		}
 		if(autor!=null && autor.trim()!=""){ 
-			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.NOME, "=", titulo, false));
+			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.NOME, "LIKE", "%" + autor + "%", false));
 		}
 		if(pais!=null && pais.trim()!=""){ 
 			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.ORIGEM, "=", pais, false));
@@ -152,10 +152,10 @@ public class SearchProcess {
 			searchFilterList.add(new CompoundSearchFilter("ESTILO", EstiloDao.NOME, "=", estilo, false));
 		}
 		if(dataInicioChecked && dataInicio!=-1){ 
-			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.DATA_NASC, ">", dataInicio, false));
+			searchFilterList.add(new CompoundSearchFilter("OBRA", ObraDao.DATA, ">", dataInicio, false));
 		}
 		if(dataFimChecked && dataFim!=-1){ 
-			searchFilterList.add(new CompoundSearchFilter("ARTISTA", ArtistaDao.DATA_FALESC, "<", dataFim, false));
+			searchFilterList.add(new CompoundSearchFilter("OBRA", ObraDao.DATA, "<", dataFim, false));
 		}
 		
 		System.out.println("process2");
@@ -165,20 +165,20 @@ public class SearchProcess {
 		//material works only for PINTURA and ESCULTURA tables
 		if(material!=null && !material.trim().equals("")){
 			if(searchAllArtworkTypes){
-				pinturaSearchFilterList.add(new CompoundSearchFilter("PINTURA", PinturaDao.MATERIAIS, "=", material, false));
-				esculturaSearchFilterList.add(new CompoundSearchFilter("ESCULTURA", EsculturaDao.MATERIAIS, "=", material, false));			
+				pinturaSearchFilterList.add(new CompoundSearchFilter("PINTURA", PinturaDao.MATERIAIS, "LIKE", "%" + material + "%", false));
+				esculturaSearchFilterList.add(new CompoundSearchFilter("ESCULTURA", EsculturaDao.MATERIAIS, "LIKE", "%" + material + "%", false));			
 			}else{
 				if(isPintura){
-					pinturaSearchFilterList.add(new CompoundSearchFilter("PINTURA", PinturaDao.MATERIAIS, "=", material, false));
+					pinturaSearchFilterList.add(new CompoundSearchFilter("PINTURA", PinturaDao.MATERIAIS, "LIKE", "%" + material + "%", false));
 				}
 				if(isEscultura){
-					esculturaSearchFilterList.add(new CompoundSearchFilter("ESCULTURA", EsculturaDao.MATERIAIS, "=", material, false));	
+					esculturaSearchFilterList.add(new CompoundSearchFilter("ESCULTURA", EsculturaDao.MATERIAIS, "LIKE", "%" + material + "%", false));	
 				}
 			}
 		}
 		//tipo midia works only for AUDIOVISUAL table
 		if(tipoMidiaChecked && tipoMidia!=null && !tipoMidia.trim().equals("")){
-			this.audiovisualSearchFilterList.add(new CompoundSearchFilter("AUDIOVISUAL", AudiovisualDao.TIPO_MIDIA, "=", tipoMidia, false));	
+			this.audiovisualSearchFilterList.add(new CompoundSearchFilter("AUDIOVISUAL", AudiovisualDao.TIPO_MIDIA, "LIKE", "%" + tipoMidia + "%", false));	
 		}
 		
 		System.out.println("process3");
@@ -193,6 +193,7 @@ public class SearchProcess {
 				this.pinturaSearchFilterList.addAll(searchFilterList);
 			}
 			if(isEscultura){
+				System.out.println("isEscultura adding filters");
 				this.esculturaSearchFilterList.addAll(searchFilterList);		
 			}
 			if(isAudiovisual){
@@ -209,26 +210,26 @@ public class SearchProcess {
 		return (!isPintura && !isEscultura && !isAudiovisual) || (isPintura && isEscultura && isAudiovisual);
 	}
 	
-	private String composeTipoObrasSetString(boolean isPintura, boolean isEscultura, boolean isAudiovisual){
-		if(!isPintura && !isEscultura && !isAudiovisual) return ""; 
-		String tipoObrasSet = "("; boolean first = true;
-		if(isPintura) {
-			tipoObrasSet += "P";
-			first = false;
-		}
-		if(isEscultura) {
-			if(!first) tipoObrasSet += ", ";
-			tipoObrasSet += "E";
-			if(first) first = false;
-		}
-		if(isAudiovisual) {
-			if(!first) tipoObrasSet += ", ";
-			tipoObrasSet += "A";
-		}
-		tipoObrasSet+=")";
-		System.out.println(tipoObrasSet);
-		return tipoObrasSet;
-	}
+//	private String composeTipoObrasSetString(boolean isPintura, boolean isEscultura, boolean isAudiovisual){
+//		if(!isPintura && !isEscultura && !isAudiovisual) return ""; 
+//		String tipoObrasSet = "("; boolean first = true;
+//		if(isPintura) {
+//			tipoObrasSet += "P";
+//			first = false;
+//		}
+//		if(isEscultura) {
+//			if(!first) tipoObrasSet += ", ";
+//			tipoObrasSet += "E";
+//			if(first) first = false;
+//		}
+//		if(isAudiovisual) {
+//			if(!first) tipoObrasSet += ", ";
+//			tipoObrasSet += "A";
+//		}
+//		tipoObrasSet+=")";
+//		System.out.println(tipoObrasSet);
+//		return tipoObrasSet;
+//	}
 	
 	
 	

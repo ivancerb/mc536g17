@@ -24,6 +24,7 @@ public class ExposicaoDao extends BaseDao{
 
 	//AVAILABLE QUERIES	
 	private static String SELECT = "SELECT * FROM EXPOSICAO";
+	private static String SELECT_ORDERED_BY_END_DATE = "SELECT * FROM EXPOSICAO ORDER BY DATA_FIM DESC";
 	private static String SELECT_WHERE = "SELECT * FROM EXPOSICAO WHERE ";
 	private static String INSERT = "INSERT INTO EXPOSICAO (ID_CURADOR, ID_MUSEU, NOME, " +
 			"DESCRICAO, DATA_INICIO, DATA_FIM, STATUS_CD) VALUES (?,?,?,?,?,?,?)";
@@ -40,6 +41,28 @@ public class ExposicaoDao extends BaseDao{
 		
 		Connection connection = ConnectionManager.getConnection();
 		PreparedStatement stmt = connection.prepareStatement(SELECT);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			Exposicao exposicao = new Exposicao();
+			exposicao.setIdExposicao(rs.getInt(1));
+			exposicao.setIdCurador(rs.getInt(2));
+			exposicao.setIdMuseu(rs.getInt(3));
+			exposicao.setNome(rs.getString(4));
+			exposicao.setDescricao(rs.getString(5));
+			exposicao.setDataInicio(rs.getDate(6));
+			exposicao.setDataFim(rs.getDate(7));
+			exposicao.setStatus(rs.getString(8));
+			listExposicao.add(exposicao);
+		}
+		return listExposicao;
+	}
+	
+	public List<Exposicao> selectAllOrderedByEndDate() throws SQLException{
+		List<Exposicao> listExposicao = new ArrayList<Exposicao>();
+		
+		Connection connection = ConnectionManager.getConnection();
+		PreparedStatement stmt = connection.prepareStatement(SELECT_ORDERED_BY_END_DATE);
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()){
